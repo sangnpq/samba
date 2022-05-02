@@ -57,9 +57,6 @@ RUN apk --no-cache --no-progress upgrade && \
 
 COPY samba.sh /usr/bin/
 
-ENTRYPOINT ["sleep"]
-CMD ["10"]
-
 EXPOSE 137/udp 138/udp 139 445
 
 HEALTHCHECK --interval=60s --timeout=15s \
