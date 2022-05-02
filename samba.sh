@@ -284,8 +284,9 @@ done < <(env | awk '/^USER[0-9=_]/ {sub (/^[^=]*=/, "", $0); print}')
 [[ "${INCLUDE:-""}" ]] && include "$INCLUDE"
 [[ "${PERMISSIONS:-""}" ]] && perms &
 
-if [ ! -f "/disk/.healthcheck" ]; then
-    exit 1
+if [ ! -f "/Mount/.healthcheck" ]; then
+    echo "ERROR: disk not loaded"
+    exit 13
 fi
 
 if [[ $# -ge 1 && -x $(which $1 2>&-) ]]; then
