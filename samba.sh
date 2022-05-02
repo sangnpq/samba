@@ -284,7 +284,9 @@ done < <(env | awk '/^USER[0-9=_]/ {sub (/^[^=]*=/, "", $0); print}')
 [[ "${INCLUDE:-""}" ]] && include "$INCLUDE"
 [[ "${PERMISSIONS:-""}" ]] && perms &
 
-sleep 20
+if [ ! -f "/disk/.healthcheck" ]; then
+    exit 1
+fi
 
 if [[ $# -ge 1 && -x $(which $1 2>&-) ]]; then
     exec "$@"
